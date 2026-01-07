@@ -1,5 +1,5 @@
 "use client";
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { 
   LayoutDashboard, 
   Send, 
@@ -16,11 +16,55 @@ import {
   ArrowRight,
   Settings,
   CreditCard,
-  Info
+  LucideIcon
 } from "lucide-react";
 
+// --- TYPES & INTERFACES ---
 
-const MalawiFlag = () => (
+interface DashboardViewProps {
+  copyId: () => void;
+  balance: string;
+  mobile: string;
+  setTab: (tab: string) => void;
+}
+
+interface TransfersViewProps {
+  balance: string;
+}
+
+interface ProfileViewProps {
+  mobile: string;
+}
+
+interface SidebarItemProps {
+  icon: LucideIcon;
+  label: string;
+  active: boolean;
+  onClick: () => void;
+}
+
+interface MobileTabProps {
+  icon: LucideIcon;
+  label: string;
+  active: boolean;
+  onClick: () => void;
+}
+
+interface ProfileButtonProps {
+  icon: LucideIcon;
+  label: string;
+}
+
+interface TransactionProps {
+  title: string;
+  sub: string;
+  amount: string;
+  positive?: boolean;
+}
+
+// --- COMPONENTS ---
+
+const MalawiFlag: React.FC = () => (
   <svg width="24" height="16" viewBox="0 0 300 200" className="rounded-sm inline-block mr-2 shadow-sm">
     <rect width="300" height="66.6" fill="#000000" />
     <rect y="66.6" width="300" height="66.6" fill="#CE1126" />
@@ -30,14 +74,13 @@ const MalawiFlag = () => (
 );
 
 export default function App() {
-  const [activeTab, setActiveTab] = useState("dashboard");
-  const [showNotification, setShowNotification] = useState(false);
+  const [activeTab, setActiveTab] = useState<string>("dashboard");
+  const [showNotification, setShowNotification] = useState<boolean>(false);
   
-  // Wallet state
-  const mobileNumber = "+265 88 000 0000";
-  const currentBalance = "245,000";
+  const mobileNumber: string = "+265 88 000 0000";
+  const currentBalance: string = "245,000";
 
-  const copyId = () => {
+  const copyId = (): void => {
     const el = document.createElement('textarea');
     el.value = mobileNumber;
     document.body.appendChild(el);
@@ -57,7 +100,6 @@ export default function App() {
         </div>
       )}
 
-      {/* --- SIDEBAR --- */}
       <aside className="hidden md:flex flex-col w-64 border-r border-slate-800/60 bg-[#0b0f1a] p-6 sticky top-0 h-screen shrink-0">
         <div className="flex items-center gap-3 mb-10 px-2">
           <span className="text-xl font-black text-white tracking-tighter uppercase">Woko<span className="text-emerald-500">Pay</span></span>
@@ -81,9 +123,7 @@ export default function App() {
         </div>
       </aside>
 
-      {/* --- MAIN CONTENT --- */}
       <main className="flex-1 h-screen overflow-y-auto pb-24 md:pb-0">
-        
         <header className="h-20 border-b border-slate-800/40 bg-[#020617]/80 backdrop-blur-md sticky top-0 z-30 px-6 flex items-center justify-between">
           <div className="flex items-center gap-2">
             <h2 className="text-lg font-black text-white uppercase tracking-tight md:hidden">
@@ -109,7 +149,6 @@ export default function App() {
         </div>
       </main>
 
-      {/* --- MOBILE NAV --- */}
       <nav className="md:hidden fixed bottom-0 left-0 right-0 bg-[#0b1120]/95 backdrop-blur-lg border-t border-slate-800/60 flex items-center justify-around py-4 px-2 z-50">
         <MobileTab icon={LayoutDashboard} label="Home" active={activeTab === 'dashboard'} onClick={() => setActiveTab('dashboard')} />
         <MobileTab icon={Send} label="Transfer" active={activeTab === 'transfers'} onClick={() => setActiveTab('transfers')} />
@@ -120,7 +159,7 @@ export default function App() {
   );
 }
 
-function DashboardView({ copyId, balance, mobile, setTab }) {
+function DashboardView({ copyId, balance, mobile, setTab }: DashboardViewProps) {
   return (
     <div className="space-y-8 animate-in fade-in duration-500">
       <section className="bg-gradient-to-br from-slate-900 to-slate-950 border border-slate-800 p-8 rounded-[2.5rem] shadow-2xl relative overflow-hidden">
@@ -181,64 +220,55 @@ function DashboardView({ copyId, balance, mobile, setTab }) {
   );
 }
 
-function TransfersView({ balance }) {
+function TransfersView({ balance }: TransfersViewProps) {
   return (
     <div className="max-w-xl mx-auto space-y-8 py-4 animate-in slide-in-from-bottom-4 duration-500">
-      
       <div className="bg-slate-900 border border-slate-800 rounded-[2.5rem] p-8 md:p-10 space-y-8 shadow-2xl relative overflow-hidden">
+        <div className="space-y-2">
+          <label className="text-[10px] font-black text-slate-500 uppercase tracking-widest px-1">
+            Destination Country
+          </label>
+          <select className="w-full bg-[#020617] border border-slate-800 rounded-2xl p-5 text-sm font-bold outline-none focus:border-emerald-500 transition-all text-slate-200">
+            <option value="ZM">🇿🇲 Zambia (ZMW)</option>
+            <option value="MW">🇲🇼 Malawi (MWK)</option>
+          </select>
+        </div>
 
-  {/* DESTINATION COUNTRY */}
-  <div className="space-y-2">
-    <label className="text-[10px] font-black text-slate-500 uppercase tracking-widest px-1">
-      Destination Country
-    </label>
-    <select className="w-full bg-[#020617] border border-slate-800 rounded-2xl p-5 text-sm font-bold outline-none focus:border-emerald-500 transition-all text-slate-200">
-      <option value="ZM">🇿🇲 Zambia (ZMW)</option>
-      <option value="MW">🇲🇼 Malawi (MWK)</option>
-    </select>
-  </div>
+        <div className="space-y-6">
+          <div className="space-y-2">
+            <label className="text-[10px] font-black text-slate-500 uppercase tracking-widest px-1">
+              Recipient Number
+            </label>
+            <input
+              className="w-full bg-[#020617] border border-slate-800 rounded-2xl p-5 text-lg font-bold outline-none focus:border-emerald-500 transition-all text-white"
+              placeholder="+260 / +265"
+            />
+          </div>
 
-  {/* TRANSFER DETAILS */}
-  <div className="space-y-6">
-    <div className="space-y-2">
-      <label className="text-[10px] font-black text-slate-500 uppercase tracking-widest px-1">
-        Recipient Number
-      </label>
-      <input
-        className="w-full bg-[#020617] border border-slate-800 rounded-2xl p-5 text-lg font-bold outline-none focus:border-emerald-500 transition-all text-white"
-        placeholder="+260 / +265"
-      />
-    </div>
+          <div className="space-y-2">
+            <label className="text-[10px] font-black text-slate-500 uppercase tracking-widest px-1">
+              Amount to Send
+            </label>
+            <div className="relative">
+              <input
+                className="w-full bg-[#020617] border border-slate-800 rounded-2xl p-5 text-4xl font-black outline-none focus:border-emerald-500 transition-all pr-24 text-white"
+                placeholder="0"
+              />
+              <span className="absolute right-5 top-1/2 -translate-y-1/2 text-slate-400 font-black text-sm">
+                MWK → ZMW
+              </span>
+            </div>
+          </div>
+        </div>
 
-    <div className="space-y-2">
-      <label className="text-[10px] font-black text-slate-500 uppercase tracking-widest px-1">
-        Amount to Send
-      </label>
-      <div className="relative">
-        <input
-          className="w-full bg-[#020617] border border-slate-800 rounded-2xl p-5 text-4xl font-black outline-none focus:border-emerald-500 transition-all pr-24 text-white"
-          placeholder="0"
-        />
-        <span className="absolute right-5 top-1/2 -translate-y-1/2 text-slate-400 font-black text-sm">
-          MWK → ZMW
-        </span>
+        <div className="p-4 bg-emerald-500/5 rounded-2xl border border-emerald-500/10 text-[10px] text-emerald-500/80 leading-relaxed uppercase font-bold text-center">
+          FX conversion + transaction fee: 0.5% (shown before confirmation)
+        </div>
+
+        <button className="w-full bg-emerald-500 text-slate-950 font-black py-5 rounded-2xl shadow-xl shadow-emerald-500/20 hover:scale-[1.02] active:scale-95 transition-all">
+          Authorize Transfer
+        </button>
       </div>
-    </div>
-  </div>
-
-  {/* FEES */}
-  <div className="p-4 bg-emerald-500/5 rounded-2xl border border-emerald-500/10 text-[10px] text-emerald-500/80 leading-relaxed uppercase font-bold text-center">
-    FX conversion + transaction fee: 0.5% (shown before confirmation)
-  </div>
-
-  {/* ACTION */}
-  <button className="w-full bg-emerald-500 text-slate-950 font-black py-5 rounded-2xl shadow-xl shadow-emerald-500/20 hover:scale-[1.02] active:scale-95 transition-all">
-    Authorize Transfer
-  </button>
-
-</div>
-
-
     </div>
   );
 }
@@ -256,7 +286,7 @@ function ActivityView() {
   );
 }
 
-function ProfileView({ mobile }) {
+function ProfileView({ mobile }: ProfileViewProps) {
   return (
     <div className="max-w-lg mx-auto text-center space-y-8 animate-in zoom-in-95 duration-500">
       <div className="relative inline-block">
@@ -282,9 +312,9 @@ function ProfileView({ mobile }) {
   );
 }
 
-/* ================= HELPERS ================= */
+// --- HELPER COMPONENTS ---
 
-function SidebarItem({ icon: Icon, label, active, onClick }) {
+function SidebarItem({ icon: Icon, label, active, onClick }: SidebarItemProps) {
   return (
     <button onClick={onClick} className={`w-full flex items-center gap-4 px-4 py-3 rounded-xl text-sm font-bold transition-all ${active ? "bg-emerald-500 text-slate-950" : "text-slate-500 hover:bg-slate-900 hover:text-white"}`}>
       <Icon size={20} />
@@ -293,7 +323,7 @@ function SidebarItem({ icon: Icon, label, active, onClick }) {
   );
 }
 
-function MobileTab({ icon: Icon, label, active, onClick }) {
+function MobileTab({ icon: Icon, label, active, onClick }: MobileTabProps) {
   return (
     <button onClick={onClick} className="flex flex-col items-center gap-1 flex-1 transition-all active:scale-90">
       <div className={`p-2 rounded-xl transition-all ${active ? 'bg-emerald-500 text-slate-950 shadow-lg shadow-emerald-500/20' : 'text-slate-500'}`}>
@@ -304,7 +334,7 @@ function MobileTab({ icon: Icon, label, active, onClick }) {
   );
 }
 
-function ProfileButton({ icon: Icon, label }) {
+function ProfileButton({ icon: Icon, label }: ProfileButtonProps) {
   return (
     <button className="flex items-center justify-between p-5 bg-slate-900/60 border border-slate-800 rounded-2xl text-left hover:bg-slate-800 transition-all group">
       <span className="font-bold flex items-center gap-4 text-white">
@@ -318,7 +348,7 @@ function ProfileButton({ icon: Icon, label }) {
   );
 }
 
-function Transaction({ title, sub, amount, positive }) {
+function Transaction({ title, sub, amount, positive }: TransactionProps) {
   return (
     <div className="flex items-center justify-between p-6 group hover:bg-slate-800/30 transition-colors">
       <div className="flex items-center gap-4">

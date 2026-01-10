@@ -18,7 +18,7 @@ export default function Hero() {
               <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
             </span>
             <span className="text-emerald-400 text-xs font-semibold uppercase tracking-wider">
-              Now Live: Malawi ↔ Zambia Corridor
+              Now Live
             </span>
           </div>
 
@@ -30,9 +30,8 @@ export default function Hero() {
           </h1>
 
           <p className="text-lg md:text-xl text-slate-400 max-w-2xl mx-auto mb-12 leading-relaxed">
-            Move money between MWK and ZMW instantly. No USD intermediaries, 
-            no hidden bank fees. Just simple, local-to-local settlement for 
-            SMEs and individuals.
+            Instant payments and transfers between local currencies across Africa. 
+            All value stays local, fast, simple, and transparent.
           </p>
 
           <div className="flex flex-col sm:flex-row justify-center items-center gap-4">

@@ -11,9 +11,9 @@ export default function Navbar() {
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
 
   const navLinks = [
-    { name: "Features", href: "#features" },
-    { name: "Pricing", href: "#pricing" },
-    { name: "About", href: "#about" },
+    { name: "Features", href: "../features" },
+    { name: "LiveFX", href: "../live-fx-rates" },
+    { name: "About", href: "../about" },
     { name: "Contact", href: "#contact" },
   ];
 
@@ -24,7 +24,7 @@ export default function Navbar() {
           
           {/* LOGO SECTION */}
           <div className="flex items-center">
-            <a href="#hero" className="flex items-center">
+            <a href="/" className="flex items-center">
               {!logoError ? (
                 /* REPLACE 'logo.png' WITH YOUR ACTUAL LOGO PATH */
                 <img 

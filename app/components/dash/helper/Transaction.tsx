@@ -5,7 +5,6 @@ import {
   ArrowDownLeft, 
 } from "lucide-react";
 
-// INTERFACES
 interface TransactionProps {
   title: string;
   sub: string;

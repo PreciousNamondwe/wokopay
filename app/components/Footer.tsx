@@ -11,7 +11,7 @@ export default function Footer() {
               WOKO<span className="text-emerald-500">PAY</span>
             </div>
             <p className="text-slate-500 text-sm leading-relaxed max-w-xs mb-8">
-              Revolutionizing cross-border liquidity between Malawi and Zambia. 
+              Revolutionizing cross-border liquidity across African countries. 
               Simple, local, and built for the future of African commerce.
             </p>
             <div className="flex gap-4">
@@ -66,7 +66,7 @@ export default function Footer() {
               <span className="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
               Systems Operational
             </span>
-            <span>MWK-ZMW v2.4.0</span>
+            <span>wokopay v1.4.0</span>
           </div>
         </div>
       </div>

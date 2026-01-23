@@ -1,14 +1,14 @@
 "use client";
 
 import React, { useState, useEffect } from 'react';
-import { 
-  Shield, 
-  Target, 
-  Globe, 
-  Cpu, 
-  Award, 
-  BarChart3, 
-  ChevronRight, 
+import {
+  Shield,
+  Target,
+  Globe,
+  Cpu,
+  Award,
+  BarChart3,
+  ChevronRight,
   Activity,
   Server,
   Scale,
@@ -19,7 +19,6 @@ import {
   Instagram,
   Mail
 } from 'lucide-react';
-import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 
 const AboutPage = () => {
@@ -62,10 +61,9 @@ const AboutPage = () => {
   ];
 
   return (
-    
+
     <div className="min-h-screen bg-slate-950 text-emerald font-sans overflow-x-hidden">
       {/* Background Atmosphere */}
-      <Navbar/>
       <div className="fixed inset-0 pointer-events-none">
         <div className="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] bg-emerald-900/10 blur-[120px] rounded-full" />
         <div className="absolute bottom-[-10%] right-[-10%] w-[40%] h-[40%] bg-blue-900/10 blur-[120px] rounded-full" />
@@ -78,14 +76,14 @@ const AboutPage = () => {
             <div className="h-[1px] w-12 bg-emerald-500/50" />
             <span className="text-[11px] font-mono tracking-[0.3em] uppercase text-emerald-400 font-bold">The Institutional Standard</span>
           </div>
-          
+
           <h1 className="text-6xl md:text-8xl font-bold text-white tracking-tight leading-[0.95] mb-12 max-w-5xl">
             Redefining the <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-emerald-600">liquidity rails</span> of Africa.
           </h1>
 
           <div className="grid md:grid-cols-2 gap-16 items-end">
             <p className="text-xl md:text-2xl leading-relaxed font-light text-slate-400">
-              WokoPay builds the liquidity rails for a borderless Africa. Our infrastructure enables instant local-currency settlement, bypassing legacy correspondent banking to curb FX stress 
+              WokoPay builds the liquidity rails for a borderless Africa. Our infrastructure enables instant local-currency settlement, bypassing legacy correspondent banking to curb FX stress
               and remove the geographic tax on regional trade.
             </p>
             <div className="flex flex-wrap gap-8 md:justify-end">
@@ -131,13 +129,13 @@ const AboutPage = () => {
                 <h4 className="text-white font-bold mb-3 flex items-center gap-2">
                   <Target className="w-4 h-4 text-emerald-500" /> The Mission
                 </h4>
-                <p className="text-sm leading-relaxed">To build the most reliable, transparent, and fastest value-transfer network in the Southern African region, empowering the next generation of digital commerce.</p>
+                <p className="text-slate-500  leading-relaxed">To build the most reliable, transparent, and fastest value-transfer network in the Southern African region, empowering the next generation of digital commerce.</p>
               </div>
               <div className="p-8 rounded-2xl bg-slate-900 border border-white/[0.03]">
                 <h4 className="text-white font-bold mb-3 flex items-center gap-2">
                   <Globe className="w-4 h-4 text-emerald-500" /> The Vision
                 </h4>
-                <p className="text-sm leading-relaxed">A unified financial landscape where local currencies move across borders with the same ease as a domestic instant payment.</p>
+                <p className="text-slate-500  leading-relaxed">A unified financial landscape where local currencies move across borders with the same ease as a domestic instant payment.</p>
               </div>
             </div>
           </div>
@@ -167,13 +165,13 @@ const AboutPage = () => {
           <div className="absolute top-0 right-0 p-20 opacity-10">
             <Shield size={300} className="text-emerald-500" />
           </div>
-          
+
           <div className="relative z-10 max-w-2xl">
             <h2 className="text-3xl font-bold text-white mb-6">Built on Trust. Operated with Precision.</h2>
             <p className="text-slate-400 mb-10 leading-relaxed">
               Compliance isn't a feature; it's our foundation. WokoPay integrates real-time AML/CTF screening and regional regulatory reporting directly into the protocol layer.
             </p>
-            
+
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
               {[
                 { label: "KYB Verification", icon: <Building2 className="w-4 h-4" /> },
@@ -198,7 +196,7 @@ const AboutPage = () => {
         <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-white/10 bg-white/5 text-[10px] font-mono tracking-widest text-slate-400 mb-8">
           <Users2 size={14} /> JOIN OUR ECOSYSTEM
         </div>
-        <h2 className="text-4xl md:text-5xl font-bold text-white mb-8 tracking-tight">Partner with the future of <br/>regional liquidity.</h2>
+        <h2 className="text-4xl md:text-5xl font-bold text-white mb-8 tracking-tight">Partner with the future of <br />regional liquidity.</h2>
         <p className="text-slate-500 max-w-xl mx-auto mb-12">
           We are currently expanding our network of banking partners and enterprise clients across the continent.
         </p>
@@ -207,7 +205,7 @@ const AboutPage = () => {
         </button>
       </section>
 
-      <Footer/>
+      <Footer />
     </div>
   );
 };

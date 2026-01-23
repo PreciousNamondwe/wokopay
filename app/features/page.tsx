@@ -1,11 +1,11 @@
 "use client";
 
 import React, { useState, useEffect } from 'react';
-import { 
-  Shield, 
-  Cpu, 
-  Zap, 
-  Globe, 
+import {
+  Shield,
+  Cpu,
+  Zap,
+  Globe,
   Lock,
   ArrowRight,
   Database,
@@ -54,18 +54,15 @@ const ArchitecturePage = () => {
 
   return (
     <div className="min-h-screen bg-slate-950 text-emerald font-sans overflow-x-hidden">
-          {/* Background Atmosphere */}
-          <Navbar/>
-          <div className="fixed inset-0 pointer-events-none">
-            <div className="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] bg-emerald-900/10 blur-[120px] rounded-full" />
-            <div className="absolute bottom-[-10%] right-[-10%] w-[40%] h-[40%] bg-blue-900/10 blur-[120px] rounded-full" />
-          </div>
+      {/* Background Atmosphere */}
+      <div className="fixed inset-0 pointer-events-none">
+        <div className="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] bg-emerald-900/10 blur-[120px] rounded-full" />
+        <div className="absolute bottom-[-10%] right-[-10%] w-[40%] h-[40%] bg-blue-900/10 blur-[120px] rounded-full" />
+      </div>
 
-      {/* Navigation Bar */}
-      <Navbar/>
 
       <main className="relative pt-32 pb-20 px-6 max-w-7xl mx-auto">
-        
+
         {/* Hero Section */}
         <section className="text-center mb-24">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-[10px] font-mono uppercase tracking-[0.2em] mb-8">
@@ -88,13 +85,12 @@ const ArchitecturePage = () => {
             </h2>
             <div className="space-y-4">
               {flowSteps.map((step, idx) => (
-                <div 
+                <div
                   key={idx}
-                  className={`p-6 rounded-2xl border transition-all duration-500 cursor-pointer ${
-                    activeStep === idx 
-                    ? 'bg-emerald-500/10 border-emerald-500/30 translate-x-4' 
+                  className={`p-6 rounded-2xl border transition-all duration-500 cursor-pointer ${activeStep === idx
+                    ? 'bg-emerald-500/10 border-emerald-500/30 translate-x-4'
                     : 'bg-white/[0.02] border-white/5 opacity-50'
-                  }`}
+                    }`}
                   onClick={() => setActiveStep(idx)}
                 >
                   <div className="flex items-center gap-4 mb-2">
@@ -112,7 +108,7 @@ const ArchitecturePage = () => {
 
           <div className="relative aspect-square bg-[transparent] rounded-[3rem] border border-white/5 flex items-center justify-center overflow-hidden group">
             <div className="absolute inset-0 bg-gradient-to-br from-emerald-500/5 to-transparent" />
-            
+
             {/* Visual Representation of the "Handshake" */}
             <div className="relative w-64 h-64">
               <div className={`absolute inset-0 border-2 border-emerald-500/20 rounded-full animate-[spin_10s_linear_infinite] ${activeStep === 1 ? 'border-emerald-500 border-dashed' : ''}`} />
@@ -123,7 +119,7 @@ const ArchitecturePage = () => {
                   <div className="font-mono text-[10px] text-emerald-500/50">ENCRYPTED_CORE</div>
                 </div>
               </div>
-              
+
               {/* Floating Data Points */}
               <div className={`absolute -top-4 left-1/2 -translate-x-1/2 px-3 py-1 bg-black border border-white/10 rounded text-[10px] font-mono transition-all duration-700 ${activeStep === 0 ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-4'}`}>
                 VALUE_INGESTED
@@ -182,7 +178,7 @@ const ArchitecturePage = () => {
 
       </main>
 
-      <Footer/>
+      <Footer />
     </div>
   );
 };

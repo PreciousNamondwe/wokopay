@@ -54,11 +54,11 @@ const SADC_DATA: Record<string, SadcCountry> = {
 };
 
 const App: React.FC = () => {
-  const [baseInfo, setBaseInfo] = useState<BaseInfo>({ 
-    code: 'MW', 
-    name: 'Malawi', 
-    currency: 'MWK', 
-    flag: '🇲🇼' 
+  const [baseInfo, setBaseInfo] = useState<BaseInfo>({
+    code: 'MW',
+    name: 'Malawi',
+    currency: 'MWK',
+    flag: '🇲🇼'
   });
   const [rates, setRates] = useState<RatesData>({});
   const [loading, setLoading] = useState<boolean>(true);
@@ -94,9 +94,9 @@ const App: React.FC = () => {
         // 3. Fetch Rates using the detected base currency
         const rateRes = await fetch(`https://open.er-api.com/v6/latest/${country.currency}`);
         if (!rateRes.ok) throw new Error("Network response was not ok");
-        
+
         const rateData: ExchangeRateApiResponse = await rateRes.json();
-        
+
         if (rateData.result === "success") {
           setRates(rateData.rates);
         } else {
@@ -116,8 +116,8 @@ const App: React.FC = () => {
   const filteredRates = useMemo(() => {
     return Object.entries(SADC_DATA)
       .filter(([_, data]) => {
-        const matchesSearch = data.name.toLowerCase().includes(searchTerm.toLowerCase()) || 
-                              data.currency.toLowerCase().includes(searchTerm.toLowerCase());
+        const matchesSearch = data.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+          data.currency.toLowerCase().includes(searchTerm.toLowerCase());
         // Don't show the base currency in the destination list
         return matchesSearch && data.currency !== baseInfo.currency;
       })
@@ -129,30 +129,29 @@ const App: React.FC = () => {
 
   return (
     <div className="min-h-screen bg-[#050810] text-slate-200 font-sans selection:bg-emerald-500/30">
-     <Navbar/>
 
       <main className="max-w-7xl mx-auto px-6 py-20">
         {/* Hero Section */}
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-12">
           <div className="bg-gradient-to-br from-emerald-500/15 via-transparent to-transparent border border-emerald-500/20 p-8 rounded-[2rem] relative overflow-hidden group">
             <div className="absolute top-0 right-0 p-4 opacity-10 group-hover:scale-110 transition-transform">
-               <TrendingUp size={80} className="text-emerald-500" />
+              <TrendingUp size={80} className="text-emerald-500" />
             </div>
             <p className="text-slate-400 text-xs font-bold uppercase tracking-widest mb-2">Base Currency Settlement</p>
             <h2 className="text-5xl font-black text-white mb-2">{baseInfo.currency}</h2>
             <div className="flex items-center gap-2 text-emerald-400 text-sm font-semibold">
-               <div className="w-2 h-2 rounded-full bg-emerald-500 animate-ping"></div>
-               Liquidity Active
+              <div className="w-2 h-2 rounded-full bg-emerald-500 animate-ping"></div>
+              Liquidity Active
             </div>
           </div>
-          
+
           <div className="bg-[#0A0F1C] border border-white/5 p-8 rounded-[2rem] lg:col-span-2 flex flex-col justify-center">
             <label className="text-slate-500 text-xs font-bold uppercase tracking-widest mb-3 ml-1">Search Corridors</label>
             <div className="relative">
               <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-500 w-5 h-5" />
-              <input 
-                type="text" 
-                placeholder="Find a country or currency (e.g. Zambia, ZAR)..." 
+              <input
+                type="text"
+                placeholder="Find a country or currency (e.g. Zambia, ZAR)..."
                 className="w-full bg-white/[0.03] border border-white/10 rounded-2xl py-4 pl-12 pr-4 focus:outline-none focus:ring-2 focus:ring-emerald-500/50 transition-all text-white placeholder:text-slate-600"
                 onChange={(e) => setSearchTerm(e.target.value)}
                 value={searchTerm}
@@ -241,19 +240,19 @@ const App: React.FC = () => {
             </div>
           </div>
           <div className="flex flex-col items-end gap-1">
-             <div className="text-[10px] font-black text-slate-500 tracking-[0.3em] uppercase">Engine Version</div>
-             <div className="text-xs font-mono text-emerald-500/80 bg-emerald-500/5 px-3 py-1 rounded-full border border-emerald-500/10">v2.10.4-STABLE</div>
+            <div className="text-[10px] font-black text-slate-500 tracking-[0.3em] uppercase">Engine Version</div>
+            <div className="text-xs font-mono text-emerald-500/80 bg-emerald-500/5 px-3 py-1 rounded-full border border-emerald-500/10">v2.10.4-STABLE</div>
           </div>
         </div>
       </main>
 
       {error && (
         <div className="fixed bottom-6 right-6 bg-red-500/10 border border-red-500/50 backdrop-blur-md text-red-400 px-6 py-4 rounded-2xl shadow-2xl flex items-center gap-4 animate-in fade-in slide-in-from-bottom-4 duration-500">
-           <div className="w-2 h-2 rounded-full bg-red-500 animate-pulse"></div>
-           <p className="text-sm font-bold tracking-wide uppercase">{error}</p>
+          <div className="w-2 h-2 rounded-full bg-red-500 animate-pulse"></div>
+          <p className="text-sm font-bold tracking-wide uppercase">{error}</p>
         </div>
       )}
-      <Footer/>
+      <Footer />
     </div>
   );
 };

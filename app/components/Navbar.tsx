@@ -106,12 +106,12 @@ export default function Navbar() {
             ))}
 
             <div className="flex flex-col gap-3 pt-4">
-              <a href="/onboarding/kyc" onClick={() => setIsMenuOpen(false)}>
+              <a href="https://wokopay-app.vercel.app/onboarding/kyc" onClick={() => setIsMenuOpen(false)}>
                 <button className="w-full bg-slate-900 text-white px-5 py-4 rounded-2xl font-bold shadow-lg">
                   Get Started
                 </button>
               </a>
-              <a href="https://google.com">
+              <a href="https://wokopay-app.vercel.app">
                 <button
                   className="w-full border-2 border-emerald-500 text-emerald-500 px-5 py-4 rounded-2xl font-bold"
                 >

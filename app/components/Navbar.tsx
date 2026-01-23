@@ -55,13 +55,13 @@ export default function Navbar() {
 
           {/* Desktop Buttons */}
           <div className="hidden md:flex items-center gap-4">
-            <a href="https://google.com">
+            <a href="https://wokopay-app.vercel.app/onboarding/kyc">
               <button className="bg-slate-900 text-white px-5 py-2.5 rounded-xl shadow hover:opacity-90 transition font-bold text-sm">
                 Get Started
               </button>
             </a>
 
-            <a href="https://google.com">
+            <a href="https://wokopay-app.vercel.app">
               <button
                 className="border-2 border-emerald-500 text-emerald-500 px-5 py-2 rounded-xl shadow hover:bg-emerald-50 transition font-bold text-sm"
               >
